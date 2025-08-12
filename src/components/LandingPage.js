@@ -39,14 +39,14 @@ const BannerImg = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover; /* 배경은 꽉 채우고 */
-  filter: blur(12px);
+  filter: blur(8px); /* 블러 약화 */
   transform: scale(1.06); /* 블러 가장자리 보정 */
 `;
 
 const DimOverlay = styled.div`
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(103, 58, 183, 0.35) 0%, rgba(103, 58, 183, 0.25) 40%, rgba(255,255,255,0.0) 100%);
+  background: linear-gradient(180deg, rgba(20, 16, 45, 0.35) 0%, rgba(20, 16, 45, 0.25) 40%, rgba(255,255,255,0.0) 100%);
 `;
 
 const CenterText = styled.div`
@@ -59,19 +59,19 @@ const CenterText = styled.div`
 `;
 
 const HeroTitle = styled.h1`
-  font-size: clamp(2rem, 7vw, 3rem);
+  font-size: clamp(2rem, 7vw, 3.2rem);
   line-height: 1.15;
   font-weight: 900;
-  color: #3b2a7a;
-  text-shadow: 0 2px 12px rgba(255, 255, 255, 0.8);
+  color: #ffffff; /* 가독성 향상 */
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.35);
 `;
 
 const HeroSubtitle = styled.p`
   margin-top: 8px;
-  font-size: clamp(1rem, 3.5vw, 1.25rem);
+  font-size: clamp(1rem, 3.5vw, 1.3rem);
   font-weight: 700;
-  color: #4f46e5;
-  text-shadow: 0 1px 10px rgba(255,255,255,0.9);
+  color: #ffffff; /* 가독성 향상 */
+  text-shadow: 0 1px 12px rgba(0,0,0,0.35);
 `;
 
 const Wave = styled.svg`
@@ -85,9 +85,9 @@ const Wave = styled.svg`
 const CardWrap = styled.div`
   width: 100%;
   padding: 0 16px 48px;
-  margin-top: -28px;
+  margin-top: -10px; /* 더 아래로 */
   @media (min-width: 640px) {
-    margin-top: -40px;
+    margin-top: -16px;
   }
 `;
 
