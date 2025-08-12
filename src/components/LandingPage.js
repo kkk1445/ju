@@ -31,12 +31,7 @@ const HeroInner = styled.div`
   position: relative;
   width: 100%;
   /* aspect-ratio는 동적으로 설정됨 */
-  max-height: 520px;
-
-  @media (min-width: 640px) {
-    /* 데스크탑에서도 동적 비율 사용, 최대 높이만 제한 */
-    max-height: 560px;
-  }
+  max-height: 620px;
 `;
 
 const BannerImg = styled.img`
@@ -44,7 +39,8 @@ const BannerImg = styled.img`
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain; /* 이미지 잘림 방지 */
+  background: linear-gradient(135deg, #d8b4fe 0%, #f0abfc 40%, #fde1ff 100%);
 `;
 
 const FallbackHero = styled.div`
@@ -74,9 +70,9 @@ const Wave = styled.svg`
 const CardWrap = styled.div`
   width: 100%;
   padding: 0 16px 48px;
-  margin-top: -36px; /* overlap to hero */
+  margin-top: -24px; /* contain으로 줄임 */
   @media (min-width: 640px) {
-    margin-top: -48px;
+    margin-top: -36px;
   }
 `;
 
@@ -189,6 +185,9 @@ const LandingPage = () => {
 
   const [bannerError, setBannerError] = useState(false);
   const [heroRatio, setHeroRatio] = useState('3 / 4');
+  const [srcIndex, setSrcIndex] = useState(0);
+  const candidates = ['/banner.jpg', '/banner.jpeg', '/banner.png', '/banner.webp'];
+
   const { register, handleSubmit, formState: { errors }, reset } = useForm({
     defaultValues: { phone1: '010' }
   });
@@ -214,6 +213,14 @@ const LandingPage = () => {
     }
   };
 
+  const handleError = () => {
+    if (srcIndex < candidates.length - 1) {
+      setSrcIndex((i) => i + 1);
+    } else {
+      setBannerError(true);
+    }
+  };
+
   return (
     <Page>
       <Container>
@@ -221,10 +228,10 @@ const LandingPage = () => {
           <HeroInner style={{ aspectRatio: heroRatio }}>
             {!bannerError && (
               <BannerImg
-                src="/banner.jpg"
-                srcSet="/banner.jpg 1x, /banner@2x.jpg 2x"
+                key={candidates[srcIndex]}
+                src={candidates[srcIndex]}
                 alt="태아보험 프로모션 배너"
-                onError={() => setBannerError(true)}
+                onError={handleError}
                 onLoad={(e) => {
                   const w = e.currentTarget.naturalWidth || 3;
                   const h = e.currentTarget.naturalHeight || 4;
