@@ -193,6 +193,41 @@ const ErrorText = styled.span`
   color: #ef4444;
 `;
 
+/* Promo Section */
+const PromoWrap = styled.section`
+  width: 100%;
+  padding: 0 16px 72px;
+`;
+
+const PromoCard = styled.div`
+  max-width: 920px;
+  margin: 0 auto;
+  background: linear-gradient(180deg, #f9e8ff 0%, #f5d9ff 100%);
+  border: 1px solid rgba(139, 92, 246, 0.18);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 12px 28px rgba(124, 58, 237, 0.15);
+`;
+
+const PromoImgBox = styled.div`
+  position: relative;
+`;
+
+const PromoImg = styled.img`
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: hue-rotate(310deg) saturate(1.05); /* 우리 톤 보정 */
+`;
+
+const PromoTint = styled.div`
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(124,58,237,0.08), rgba(162,28,175,0.06));
+  mix-blend-mode: multiply;
+  pointer-events: none;
+`;
+
 const LandingPage = () => {
   useEffect(() => {
     document.title = '카라멜에셋 태아보험';
@@ -202,6 +237,9 @@ const LandingPage = () => {
   const [heroRatio, setHeroRatio] = useState('3 / 4');
   const [srcIndex, setSrcIndex] = useState(0);
   const candidates = ['/1.png', '/1.jpg', '/1.jpeg', '/1.webp'];
+
+  const [promoSrcIndex, setPromoSrcIndex] = useState(0);
+  const promoCandidates = ['/promo.png', '/promo.jpg', '/2.png'];
 
   const { register, handleSubmit, formState: { errors }, reset } = useForm({
     defaultValues: { phone1: '010' }
@@ -329,6 +367,24 @@ const LandingPage = () => {
             </Form>
           </Card>
         </CardWrap>
+
+        {/* Promo section under form */}
+        <PromoWrap>
+          <PromoCard>
+            <PromoImgBox>
+              <PromoImg
+                src={promoCandidates[promoSrcIndex]}
+                alt="상담 완료 시 제공되는 사은품 안내"
+                onError={() => {
+                  if (promoSrcIndex < promoCandidates.length - 1) {
+                    setPromoSrcIndex(promoSrcIndex + 1);
+                  }
+                }}
+              />
+              <PromoTint />
+            </PromoImgBox>
+          </PromoCard>
+        </PromoWrap>
       </Container>
     </Page>
   );
