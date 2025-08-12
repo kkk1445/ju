@@ -38,9 +38,9 @@ const BannerImg = styled.img`
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover; /* 배경은 꽉 채우고 */
-  filter: blur(8px); /* 블러 약화 */
-  transform: scale(1.06); /* 블러 가장자리 보정 */
+  object-fit: cover;
+  filter: blur(8px);
+  transform: scale(1.06);
 `;
 
 const DimOverlay = styled.div`
@@ -58,20 +58,41 @@ const CenterText = styled.div`
   padding: 24px;
 `;
 
+const Glass = styled.div`
+  display: inline-block;
+  padding: clamp(12px, 2.5vw, 18px) clamp(16px, 3vw, 28px);
+  border-radius: 16px;
+  background: rgba(10, 10, 20, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.25);
+`;
+
 const HeroTitle = styled.h1`
-  font-size: clamp(2rem, 7vw, 3.2rem);
+  font-size: clamp(2.1rem, 7.5vw, 3.4rem);
   line-height: 1.15;
   font-weight: 900;
-  color: #ffffff; /* 가독성 향상 */
-  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.35);
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  /* 테두리: 크롬/사파리 */
+  -webkit-text-stroke: 2px rgba(0, 0, 0, 0.28);
+  /* 파이어폭스 대체: 멀티 섀도우로 아웃라인 효과 */
+  text-shadow:
+    0 2px 16px rgba(0, 0, 0, 0.45),
+    0 0 2px rgba(0, 0, 0, 0.45),
+    0 0 6px rgba(0, 0, 0, 0.28);
 `;
 
 const HeroSubtitle = styled.p`
   margin-top: 8px;
   font-size: clamp(1rem, 3.5vw, 1.3rem);
-  font-weight: 700;
-  color: #ffffff; /* 가독성 향상 */
-  text-shadow: 0 1px 12px rgba(0,0,0,0.35);
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  color: #ffffff;
+  -webkit-text-stroke: 1px rgba(0, 0, 0, 0.2);
+  text-shadow:
+    0 1px 12px rgba(0,0,0,0.35),
+    0 0 2px rgba(0,0,0,0.35);
 `;
 
 const Wave = styled.svg`
@@ -85,7 +106,7 @@ const Wave = styled.svg`
 const CardWrap = styled.div`
   width: 100%;
   padding: 0 16px 48px;
-  margin-top: -10px; /* 더 아래로 */
+  margin-top: -10px;
   @media (min-width: 640px) {
     margin-top: -16px;
   }
@@ -219,7 +240,7 @@ const PromoImg = styled.img`
   display: block;
   width: 100%;
   height: auto;
-  filter: hue-rotate(310deg) saturate(1.05); /* 우리 톤 보정 */
+  filter: hue-rotate(310deg) saturate(1.05);
 `;
 
 const PromoTint = styled.div`
@@ -303,10 +324,10 @@ const LandingPage = () => {
             )}
             <DimOverlay />
             <CenterText>
-              <div>
+              <Glass>
                 <HeroTitle>우리아기 태아보험</HeroTitle>
                 <HeroSubtitle>내 아이의 생애 첫 보험</HeroSubtitle>
-              </div>
+              </Glass>
             </CenterText>
           </HeroInner>
           <Wave viewBox="0 0 1440 56" preserveAspectRatio="none" aria-hidden="true">
