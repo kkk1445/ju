@@ -1,0 +1,8 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /applications/{document} {
+      allow read, write: if true; // 개발용 - 프로덕션에서는 인증 필요
+    }
+  }
+}

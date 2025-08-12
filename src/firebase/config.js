@@ -3,14 +3,15 @@ import { getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
 
-// Firebase 설정 - 실제 프로젝트에서 Firebase 콘솔에서 가져온 설정으로 교체하세요
+// Firebase 설정 - Firebase 콘솔에서 가져온 실제 설정
 const firebaseConfig = {
-  apiKey: "your-api-key",
-  authDomain: "your-project.firebaseapp.com",
-  projectId: "your-project-id",
-  storageBucket: "your-project.appspot.com",
-  messagingSenderId: "your-sender-id",
-  appId: "your-app-id"
+  apiKey: "AIzaSyAABNN1POZHRNO0f9Sy3FHAEtZ_x9yoyEA",
+  authDomain: "juju-a1b91.firebaseapp.com",
+  projectId: "juju-a1b91",
+  storageBucket: "juju-a1b91.firebasestorage.app",
+  messagingSenderId: "340004659888",
+  appId: "1:340004659888:web:929a4591e67ab05ce79175",
+  measurementId: "G-1HG395M82R"
 };
 
 // Firebase 초기화
