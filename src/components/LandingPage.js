@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { useForm } from 'react-hook-form';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
@@ -105,6 +105,10 @@ const ErrorText = styled.span`
 `;
 
 const LandingPage = () => {
+  useEffect(() => {
+    document.title = '카라멜에셋 태아보험';
+  }, []);
+
   const { register, handleSubmit, setValue, formState: { errors }, reset } = useForm({
     defaultValues: { phone1: '010' }
   });
