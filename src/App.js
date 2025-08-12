@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import styled, { createGlobalStyle } from 'styled-components';
 import Header from './components/Header';
-import Hero from './components/Hero';
+import LandingPage from './components/LandingPage';
 import ApplicationForm from './components/ApplicationForm';
 import AdminPanel from './components/AdminPanel';
 import PrivacyPolicy from './components/PrivacyPolicy';
@@ -44,68 +44,24 @@ const AppContainer = styled.div`
 `;
 
 const MainContent = styled.main`
-  padding-top: 80px; /* Header 높이만큼 여백 */
+  padding-top: 0; /* 랜딩은 풀스크린 */
 `;
 
 const App = () => {
   const [isFormOpen, setIsFormOpen] = useState(false);
 
-  const handleApplyClick = () => {
-    setIsFormOpen(true);
-  };
-
-  const handleFormClose = () => {
-    setIsFormOpen(false);
-  };
-
   return (
     <Router>
       <GlobalStyle />
       <AppContainer>
-        <Header />
         <MainContent>
           <Routes>
-            <Route 
-              path="/" 
-              element={<Hero onApplyClick={handleApplyClick} />} 
-            />
-            <Route 
-              path="/admin" 
-              element={<AdminPanel />} 
-            />
-            <Route 
-              path="/privacy" 
-              element={<PrivacyPolicy />} 
-            />
+            <Route path="/" element={<LandingPage />} />
+            <Route path="/admin" element={<AdminPanel />} />
+            <Route path="/privacy" element={<PrivacyPolicy />} />
           </Routes>
         </MainContent>
-        
-        <ApplicationForm 
-          isOpen={isFormOpen} 
-          onClose={handleFormClose} 
-        />
-        
-        <Toaster
-          position="top-center"
-          reverseOrder={false}
-          gutter={8}
-          containerClassName=""
-          containerStyle={{}}
-          toastOptions={{
-            className: '',
-            duration: 4000,
-            style: {
-              background: '#363636',
-              color: '#fff',
-            },
-            success: {
-              duration: 3000,
-              theme: {
-                primary: '#4aed88',
-              },
-            },
-          }}
-        />
+        <Toaster position="top-center" />
       </AppContainer>
     </Router>
   );
