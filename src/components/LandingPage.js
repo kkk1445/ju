@@ -197,6 +197,8 @@ const ErrorText = styled.span`
 const PromoWrap = styled.section`
   width: 100%;
   padding: 0 16px 72px;
+  display: grid;
+  gap: 24px;
 `;
 
 const PromoCard = styled.div`
@@ -240,6 +242,10 @@ const LandingPage = () => {
 
   const [promoSrcIndex, setPromoSrcIndex] = useState(0);
   const promoCandidates = ['/promo.png', '/promo.jpg', '/2.png'];
+  const [promo3Index, setPromo3Index] = useState(0);
+  const promo3Candidates = ['/3.png', '/3.jpg', '/3.jpeg', '/3.webp'];
+  const [promo4Index, setPromo4Index] = useState(0);
+  const promo4Candidates = ['/4.png', '/4.jpg', '/4.jpeg', '/4.webp'];
 
   const { register, handleSubmit, formState: { errors }, reset } = useForm({
     defaultValues: { phone1: '010' }
@@ -368,8 +374,9 @@ const LandingPage = () => {
           </Card>
         </CardWrap>
 
-        {/* Promo section under form */}
+        {/* Promo sections under form */}
         <PromoWrap>
+          {/* Top promo (existing) */}
           <PromoCard>
             <PromoImgBox>
               <PromoImg
@@ -378,6 +385,38 @@ const LandingPage = () => {
                 onError={() => {
                   if (promoSrcIndex < promoCandidates.length - 1) {
                     setPromoSrcIndex(promoSrcIndex + 1);
+                  }
+                }}
+              />
+              <PromoTint />
+            </PromoImgBox>
+          </PromoCard>
+
+          {/* 3.png section */}
+          <PromoCard>
+            <PromoImgBox>
+              <PromoImg
+                src={promo3Candidates[promo3Index]}
+                alt="프로모션 이미지 3"
+                onError={() => {
+                  if (promo3Index < promo3Candidates.length - 1) {
+                    setPromo3Index(promo3Index + 1);
+                  }
+                }}
+              />
+              <PromoTint />
+            </PromoImgBox>
+          </PromoCard>
+
+          {/* 4.png section */}
+          <PromoCard>
+            <PromoImgBox>
+              <PromoImg
+                src={promo4Candidates[promo4Index]}
+                alt="프로모션 이미지 4"
+                onError={() => {
+                  if (promo4Index < promo4Candidates.length - 1) {
+                    setPromo4Index(promo4Index + 1);
                   }
                 }}
               />
