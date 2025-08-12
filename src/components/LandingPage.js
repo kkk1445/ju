@@ -5,6 +5,7 @@ import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { db } from '../firebase/config';
 import { motion } from 'framer-motion';
 import toast from 'react-hot-toast';
+import FancyTitle from './FancyTitle';
 
 const Page = styled.div`
   min-height: 100vh;
@@ -49,50 +50,13 @@ const DimOverlay = styled.div`
   background: linear-gradient(180deg, rgba(20, 16, 45, 0.35) 0%, rgba(20, 16, 45, 0.25) 40%, rgba(255,255,255,0.0) 100%);
 `;
 
-const CenterText = styled.div`
+const CenterArea = styled.div`
   position: absolute;
   inset: 0;
   display: grid;
   place-items: center;
   text-align: center;
-  padding: 24px;
-`;
-
-const Glass = styled.div`
-  display: inline-block;
-  padding: clamp(12px, 2.5vw, 18px) clamp(16px, 3vw, 28px);
-  border-radius: 16px;
-  background: rgba(10, 10, 20, 0.25);
-  border: 1px solid rgba(255, 255, 255, 0.28);
-  backdrop-filter: blur(8px);
-  box-shadow: 0 10px 40px rgba(0,0,0,0.25);
-`;
-
-const HeroTitle = styled.h1`
-  font-size: clamp(2.1rem, 7.5vw, 3.4rem);
-  line-height: 1.15;
-  font-weight: 900;
-  letter-spacing: -0.02em;
-  color: #ffffff;
-  /* 테두리: 크롬/사파리 */
-  -webkit-text-stroke: 2px rgba(0, 0, 0, 0.28);
-  /* 파이어폭스 대체: 멀티 섀도우로 아웃라인 효과 */
-  text-shadow:
-    0 2px 16px rgba(0, 0, 0, 0.45),
-    0 0 2px rgba(0, 0, 0, 0.45),
-    0 0 6px rgba(0, 0, 0, 0.28);
-`;
-
-const HeroSubtitle = styled.p`
-  margin-top: 8px;
-  font-size: clamp(1rem, 3.5vw, 1.3rem);
-  font-weight: 800;
-  letter-spacing: 0.01em;
-  color: #ffffff;
-  -webkit-text-stroke: 1px rgba(0, 0, 0, 0.2);
-  text-shadow:
-    0 1px 12px rgba(0,0,0,0.35),
-    0 0 2px rgba(0,0,0,0.35);
+  padding: 12px;
 `;
 
 const Wave = styled.svg`
@@ -323,12 +287,9 @@ const LandingPage = () => {
               <BannerImg style={{ filter: 'none' }} src="/banner.jpg" alt="배너" />
             )}
             <DimOverlay />
-            <CenterText>
-              <Glass>
-                <HeroTitle>우리아기 태아보험</HeroTitle>
-                <HeroSubtitle>내 아이의 생애 첫 보험</HeroSubtitle>
-              </Glass>
-            </CenterText>
+            <CenterArea>
+              <FancyTitle />
+            </CenterArea>
           </HeroInner>
           <Wave viewBox="0 0 1440 56" preserveAspectRatio="none" aria-hidden="true">
             <path d="M0,32L80,37.3C160,43,320,53,480,50.7C640,48,800,32,960,24C1120,16,1280,16,1360,16L1440,16L1440,56L1360,56C1280,56,1120,56,960,56C800,56,640,56,480,56C320,56,160,56,80,56L0,56Z" />
