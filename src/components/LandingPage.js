@@ -30,11 +30,12 @@ const Hero = styled.section`
 const HeroInner = styled.div`
   position: relative;
   width: 100%;
-  aspect-ratio: 3 / 4; /* mobile-optimized */
+  /* aspect-ratio는 동적으로 설정됨 */
   max-height: 520px;
 
   @media (min-width: 640px) {
-    aspect-ratio: 16 / 7;
+    /* 데스크탑에서도 동적 비율 사용, 최대 높이만 제한 */
+    max-height: 560px;
   }
 `;
 
@@ -187,6 +188,7 @@ const LandingPage = () => {
   }, []);
 
   const [bannerError, setBannerError] = useState(false);
+  const [heroRatio, setHeroRatio] = useState('3 / 4');
   const { register, handleSubmit, formState: { errors }, reset } = useForm({
     defaultValues: { phone1: '010' }
   });
@@ -216,13 +218,18 @@ const LandingPage = () => {
     <Page>
       <Container>
         <Hero>
-          <HeroInner>
+          <HeroInner style={{ aspectRatio: heroRatio }}>
             {!bannerError && (
               <BannerImg
                 src="/banner.jpg"
                 srcSet="/banner.jpg 1x, /banner@2x.jpg 2x"
                 alt="태아보험 프로모션 배너"
                 onError={() => setBannerError(true)}
+                onLoad={(e) => {
+                  const w = e.currentTarget.naturalWidth || 3;
+                  const h = e.currentTarget.naturalHeight || 4;
+                  setHeroRatio(`${w} / ${h}`);
+                }}
               />
             )}
             {bannerError && (
