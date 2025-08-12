@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useForm } from 'react-hook-form';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
@@ -24,14 +24,13 @@ const Hero = styled.section`
   position: relative;
   width: 100%;
   overflow: hidden;
-  background: linear-gradient(135deg, #d8b4fe 0%, #f0abfc 40%, #fde1ff 100%);
+  background: #f0e6ff;
 `;
 
 const HeroInner = styled.div`
   position: relative;
   width: 100%;
-  /* aspect-ratio는 동적으로 설정됨 */
-  max-height: 620px;
+  max-height: 640px;
 `;
 
 const BannerImg = styled.img`
@@ -39,24 +38,40 @@ const BannerImg = styled.img`
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: contain; /* 이미지 잘림 방지 */
-  background: linear-gradient(135deg, #d8b4fe 0%, #f0abfc 40%, #fde1ff 100%);
+  object-fit: cover; /* 배경은 꽉 채우고 */
+  filter: blur(12px);
+  transform: scale(1.06); /* 블러 가장자리 보정 */
 `;
 
-const FallbackHero = styled.div`
+const DimOverlay = styled.div`
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(103, 58, 183, 0.35) 0%, rgba(103, 58, 183, 0.25) 40%, rgba(255,255,255,0.0) 100%);
+`;
+
+const CenterText = styled.div`
   position: absolute;
   inset: 0;
   display: grid;
   place-items: center;
-  color: #5b21b6;
   text-align: center;
-  padding: 1.25rem;
+  padding: 24px;
 `;
 
-const FallbackTitle = styled.h1`
-  font-size: clamp(1.6rem, 6vw, 2.6rem);
+const HeroTitle = styled.h1`
+  font-size: clamp(2rem, 7vw, 3rem);
+  line-height: 1.15;
   font-weight: 900;
-  letter-spacing: -0.02em;
+  color: #3b2a7a;
+  text-shadow: 0 2px 12px rgba(255, 255, 255, 0.8);
+`;
+
+const HeroSubtitle = styled.p`
+  margin-top: 8px;
+  font-size: clamp(1rem, 3.5vw, 1.25rem);
+  font-weight: 700;
+  color: #4f46e5;
+  text-shadow: 0 1px 10px rgba(255,255,255,0.9);
 `;
 
 const Wave = styled.svg`
@@ -70,9 +85,9 @@ const Wave = styled.svg`
 const CardWrap = styled.div`
   width: 100%;
   padding: 0 16px 48px;
-  margin-top: -24px; /* contain으로 줄임 */
+  margin-top: -28px;
   @media (min-width: 640px) {
-    margin-top: -36px;
+    margin-top: -40px;
   }
 `;
 
@@ -186,7 +201,7 @@ const LandingPage = () => {
   const [bannerError, setBannerError] = useState(false);
   const [heroRatio, setHeroRatio] = useState('3 / 4');
   const [srcIndex, setSrcIndex] = useState(0);
-  const candidates = ['/banner.jpg', '/banner.jpeg', '/banner.png', '/banner.webp'];
+  const candidates = ['/1.png', '/1.jpg', '/1.jpeg', '/1.webp'];
 
   const { register, handleSubmit, formState: { errors }, reset } = useForm({
     defaultValues: { phone1: '010' }
@@ -230,7 +245,7 @@ const LandingPage = () => {
               <BannerImg
                 key={candidates[srcIndex]}
                 src={candidates[srcIndex]}
-                alt="태아보험 프로모션 배너"
+                alt="상단 배너"
                 onError={handleError}
                 onLoad={(e) => {
                   const w = e.currentTarget.naturalWidth || 3;
@@ -240,10 +255,15 @@ const LandingPage = () => {
               />
             )}
             {bannerError && (
-              <FallbackHero>
-                <FallbackTitle>우리 아이 태아보험 – 내 아이의 생애 첫 보험</FallbackTitle>
-              </FallbackHero>
+              <BannerImg style={{ filter: 'none' }} src="/banner.jpg" alt="배너" />
             )}
+            <DimOverlay />
+            <CenterText>
+              <div>
+                <HeroTitle>우리아기 태아보험</HeroTitle>
+                <HeroSubtitle>내 아이의 생애 첫 보험</HeroSubtitle>
+              </div>
+            </CenterText>
           </HeroInner>
           <Wave viewBox="0 0 1440 56" preserveAspectRatio="none" aria-hidden="true">
             <path d="M0,32L80,37.3C160,43,320,53,480,50.7C640,48,800,32,960,24C1120,16,1280,16,1360,16L1440,16L1440,56L1360,56C1280,56,1120,56,960,56C800,56,640,56,480,56C320,56,160,56,80,56L0,56Z" />
