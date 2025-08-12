@@ -94,7 +94,7 @@ const Header = () => {
     { href: '#home', text: '홈' },
     { href: '#benefits', text: '혜택' },
     { href: '#process', text: '신청절차' },
-    { href: '#contact', text: '문의' }
+    { href: '/privacy', text: '개인정보처리방침' }
   ];
 
   return (

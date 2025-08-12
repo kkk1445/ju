@@ -86,7 +86,7 @@ const TableHeader = styled.div`
 
 const ApplicationRow = styled(motion.div)`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr auto;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr auto;
   gap: 1rem;
   padding: 1rem;
   border-bottom: 1px solid #f3f4f6;
@@ -248,6 +248,20 @@ const AdminPanel = () => {
     return phone || '-';
   };
 
+  const formatGenderAge = (gender, birthDate) => {
+    if (!gender && !birthDate) return '-';
+    const genderText = gender === 'male' ? '남' : gender === 'female' ? '여' : '';
+    const age = birthDate ? new Date().getFullYear() - new Date(birthDate).getFullYear() : '';
+    return `${genderText}${age ? `/${age}세` : ''}`;
+  };
+
+  const formatInsuranceInfo = (type, budget, importance) => {
+    const typeText = type || '-';
+    const budgetText = budget ? budget.replace('k', '만원') : '';
+    const importanceText = importance || '';
+    return `${typeText}<br/>${budgetText}${importanceText ? ` / ${importanceText}` : ''}`;
+  };
+
   if (loading) {
     return (
       <AdminContainer>
@@ -304,8 +318,9 @@ const AdminPanel = () => {
         <TableHeader>
           <div>신청자</div>
           <div>연락처</div>
-          <div>예정일</div>
-          <div>예산</div>
+          <div>성별/나이</div>
+          <div>보험종류</div>
+          <div>예산/중요도</div>
           <div>신청일</div>
           <div>상태</div>
           <div>작업</div>
@@ -327,18 +342,24 @@ const AdminPanel = () => {
                 <MobileLabel>신청자:</MobileLabel>
                 {app.applicantName}
               </div>
-              <div>
-                <MobileLabel>연락처:</MobileLabel>
-                {formatPhone(app.phone)}
-              </div>
-              <div>
-                <MobileLabel>예정일:</MobileLabel>
-                {formatDate(app.dueDate)}
-              </div>
-              <div>
-                <MobileLabel>예산:</MobileLabel>
-                {app.budget || '-'}
-              </div>
+                             <div>
+                 <MobileLabel>연락처:</MobileLabel>
+                 {formatPhone(app.phone)}
+               </div>
+               <div>
+                 <MobileLabel>성별/나이:</MobileLabel>
+                 {formatGenderAge(app.gender, app.birthDate)}
+               </div>
+               <div>
+                 <MobileLabel>보험종류:</MobileLabel>
+                 {app.insuranceType || '-'}
+               </div>
+               <div>
+                 <MobileLabel>예산/중요도:</MobileLabel>
+                 <div dangerouslySetInnerHTML={{ 
+                   __html: formatInsuranceInfo(app.insuranceType, app.budget, app.importance) 
+                 }} />
+               </div>
               <div>
                 <MobileLabel>신청일:</MobileLabel>
                 {formatDate(app.createdAt)}

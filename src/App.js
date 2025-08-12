@@ -6,6 +6,7 @@ import Header from './components/Header';
 import Hero from './components/Hero';
 import ApplicationForm from './components/ApplicationForm';
 import AdminPanel from './components/AdminPanel';
+import PrivacyPolicy from './components/PrivacyPolicy';
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -71,6 +72,10 @@ const App = () => {
             <Route 
               path="/admin" 
               element={<AdminPanel />} 
+            />
+            <Route 
+              path="/privacy" 
+              element={<PrivacyPolicy />} 
             />
           </Routes>
         </MainContent>

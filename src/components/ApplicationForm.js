@@ -258,6 +258,24 @@ const ApplicationForm = ({ isOpen, onClose }) => {
               </FormGroup>
 
               <FormGroup>
+                <Label>생년월일</Label>
+                <Input
+                  type="date"
+                  {...register('birthDate')}
+                  placeholder="생년월일"
+                />
+              </FormGroup>
+
+              <FormGroup>
+                <Label>성별</Label>
+                <Select {...register('gender')}>
+                  <option value="">선택해주세요</option>
+                  <option value="male">남성</option>
+                  <option value="female">여성</option>
+                </Select>
+              </FormGroup>
+
+              <FormGroup>
                 <Label>예정일 *</Label>
                 <Input
                   type="date"
@@ -270,10 +288,24 @@ const ApplicationForm = ({ isOpen, onClose }) => {
               </FormGroup>
 
               <FormGroup>
-                <Label>보험료 예산</Label>
+                <Label>보험종류</Label>
+                <Select {...register('insuranceType')}>
+                  <option value="">선택해주세요</option>
+                  <option value="태아보험">태아보험</option>
+                  <option value="어린이보험">어린이보험</option>
+                  <option value="종신보험">종신보험</option>
+                  <option value="정기보험">정기보험</option>
+                  <option value="상해보험">상해보험</option>
+                  <option value="기타">기타</option>
+                </Select>
+              </FormGroup>
+
+              <FormGroup>
+                <Label>원하는 보험료</Label>
                 <Select {...register('budget')}>
                   <option value="">선택해주세요</option>
-                  <option value="under-50k">월 5만원 미만</option>
+                  <option value="under-30k">월 3만원 미만</option>
+                  <option value="30k-50k">월 3-5만원</option>
                   <option value="50k-100k">월 5-10만원</option>
                   <option value="100k-200k">월 10-20만원</option>
                   <option value="over-200k">월 20만원 이상</option>
@@ -281,12 +313,34 @@ const ApplicationForm = ({ isOpen, onClose }) => {
               </FormGroup>
 
               <FormGroup>
-                <Label>추가 문의사항</Label>
-                <TextArea
-                  {...register('additionalInfo')}
-                  placeholder="추가로 궁금한 점이나 특별한 요구사항이 있으시면 적어주세요"
-                />
+                <Label>보험중요도</Label>
+                <Select {...register('importance')}>
+                  <option value="">선택해주세요</option>
+                  <option value="매우중요">매우 중요</option>
+                  <option value="중요">중요</option>
+                  <option value="보통">보통</option>
+                  <option value="덜중요">덜 중요</option>
+                </Select>
               </FormGroup>
+
+                             <FormGroup>
+                 <Label>기타문의</Label>
+                 <TextArea
+                   {...register('additionalInfo')}
+                   placeholder="추가로 궁금한 점이나 특별한 요구사항이 있으시면 적어주세요"
+                 />
+               </FormGroup>
+
+               <FormGroup>
+                 <Label style={{ fontSize: '0.8rem', color: '#666' }}>
+                   * 개인정보 수집이용에 동의합니다
+                 </Label>
+                 <div style={{ fontSize: '0.8rem', color: '#666', marginTop: '0.5rem' }}>
+                   수집항목: 이름, 연락처, 이메일, 생년월일, 성별, 보험종류, 원하는가격, 보험중요도, 기타문의<br/>
+                   이용목적: 보험상품 안내 및 가입 상담<br/>
+                   보유기간: 서비스 제공 기간 동안
+                 </div>
+               </FormGroup>
 
               <SubmitButton
                 type="submit"
