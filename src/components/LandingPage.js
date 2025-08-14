@@ -12,7 +12,7 @@ const Page = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: linear-gradient(180deg, #fdf2ff 0%, #fff 40%, #fafafa 100%);
+  background: linear-gradient(180deg, #fff7ed 0%, #fffbf5 40%, #f7efe7 100%);
 `;
 
 const Container = styled.div`
@@ -25,7 +25,7 @@ const Hero = styled.section`
   position: relative;
   width: 100%;
   overflow: hidden;
-  background: #f0e6ff;
+  background: #fff2e1;
 `;
 
 const HeroInner = styled.div`
@@ -47,7 +47,7 @@ const BannerImg = styled.img`
 const DimOverlay = styled.div`
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(20, 16, 45, 0.35) 0%, rgba(20, 16, 45, 0.25) 40%, rgba(255,255,255,0.0) 100%);
+  background: linear-gradient(180deg, rgba(120, 72, 32, 0.28) 0%, rgba(120, 72, 32, 0.18) 40%, rgba(255,255,255,0.0) 100%);
 `;
 
 const CenterArea = styled.div`
@@ -83,8 +83,8 @@ const Card = styled(motion.div)`
   border-radius: 16px;
   padding: 18px;
   margin: 0 auto;
-  box-shadow: 0 18px 50px rgba(96, 14, 167, 0.12);
-  border: 1px solid rgba(139, 92, 246, 0.15);
+  box-shadow: 0 18px 50px rgba(217, 119, 6, 0.12);
+  border: 1px solid rgba(245, 158, 11, 0.18);
 `;
 
 const Title = styled.h2`
@@ -92,7 +92,7 @@ const Title = styled.h2`
   font-size: 1.6rem;
   font-weight: 900;
   margin-bottom: 0.75rem;
-  color: #2b2240;
+  color: #3b2f2a;
 `;
 
 const Subtitle = styled.p`
@@ -116,7 +116,7 @@ const Input = styled.input`
   font-size: 1rem;
   background: #ffffff;
   transition: border-color .2s ease, box-shadow .2s ease;
-  &:focus { outline: none; border-color: #a855f7; box-shadow: 0 0 0 4px rgba(168, 85, 247, .15); }
+  &:focus { outline: none; border-color: #f59e0b; box-shadow: 0 0 0 4px rgba(245, 158, 11, .18); }
   &.error { border-color: #ef4444; }
 `;
 
@@ -130,7 +130,7 @@ const TextArea = styled.textarea`
   resize: vertical;
   background: #ffffff;
   transition: border-color .2s ease, box-shadow .2s ease;
-  &:focus { outline: none; border-color: #a855f7; box-shadow: 0 0 0 4px rgba(168, 85, 247, .15); }
+  &:focus { outline: none; border-color: #f59e0b; box-shadow: 0 0 0 4px rgba(245, 158, 11, .18); }
 `;
 
 const PhoneRow = styled.div`
@@ -144,7 +144,7 @@ const ConsentRow = styled.div`
   align-items: center;
   gap: 0.5rem;
   font-size: 0.95rem;
-  color: #374151;
+  color: #5b4b43;
 `;
 
 const Checkbox = styled.input``;
@@ -158,14 +158,14 @@ const SubmitButton = styled(motion.button)`
   font-size: 1.1rem;
   font-weight: 800;
   cursor: pointer;
-  background: linear-gradient(90deg, #7c3aed, #a21caf);
-  box-shadow: 0 14px 30px rgba(124, 58, 237, 0.35);
+  background: linear-gradient(90deg, #f59e0b, #f97316);
+  box-shadow: 0 14px 30px rgba(249, 115, 22, 0.28);
 `;
 
 const Label = styled.label`
   font-size: 0.95rem;
   font-weight: 700;
-  color: #374151;
+  color: #5b4b43;
 `;
 
 const Field = styled.div`
@@ -189,11 +189,11 @@ const PromoWrap = styled.section`
 const PromoCard = styled.div`
   max-width: 920px;
   margin: 0 auto;
-  background: linear-gradient(180deg, #f9e8ff 0%, #f5d9ff 100%);
-  border: 1px solid rgba(139, 92, 246, 0.18);
+  background: linear-gradient(180deg, #fff3e0 0%, #ffedd5 100%);
+  border: 1px solid rgba(245, 158, 11, 0.18);
   border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 12px 28px rgba(124, 58, 237, 0.15);
+  box-shadow: 0 12px 28px rgba(249, 115, 22, 0.15);
 `;
 
 const PromoImgBox = styled.div`
@@ -204,13 +204,13 @@ const PromoImg = styled.img`
   display: block;
   width: 100%;
   height: auto;
-  filter: hue-rotate(310deg) saturate(1.05);
+  filter: saturate(1.02);
 `;
 
 const PromoTint = styled.div`
   position: absolute;
   inset: 0;
-  background: linear-gradient(0deg, rgba(124,58,237,0.08), rgba(162,28,175,0.06));
+  background: linear-gradient(0deg, rgba(245, 158, 11, 0.08), rgba(249, 115, 22, 0.06));
   mix-blend-mode: multiply;
   pointer-events: none;
 `;
@@ -358,7 +358,6 @@ const LandingPage = () => {
 
         {/* Promo sections under form */}
         <PromoWrap>
-          {/* Top promo (existing) */}
           <PromoCard>
             <PromoImgBox>
               <PromoImg
@@ -374,7 +373,6 @@ const LandingPage = () => {
             </PromoImgBox>
           </PromoCard>
 
-          {/* 3.png section */}
           <PromoCard>
             <PromoImgBox>
               <PromoImg
@@ -390,7 +388,6 @@ const LandingPage = () => {
             </PromoImgBox>
           </PromoCard>
 
-          {/* 4.png section */}
           <PromoCard>
             <PromoImgBox>
               <PromoImg
